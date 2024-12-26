@@ -3,7 +3,7 @@
     "name": "BaskiApp",
     "slug": "BaskiApp",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "adaptive",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.BaskiApp"
     },
     "web": {
       "bundler": "metro",
@@ -32,7 +33,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

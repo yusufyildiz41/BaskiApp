@@ -1,39 +1,44 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { Stack } from "expo-router";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
+import { Colors } from "../constants/Colors";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+/**
+ * ActionSheetProvider is a provider for the action sheet. It is used to provide the action sheet context to the app.
+ * GestureHandlerRootView is a view that handles gestures. It is used to handle gestures in the app.
+ * StatusBar is a component that displays the status bar. It is used to display the status bar in the app.
+ * <> </> is a fragment. It is used to wrap the components in the app.
+ * Stack means that the screen is a stack screen. It is used to navigate to the screen.
+ * Stack.Screen is a screen in the stack. It is used to navigate to the screen.
+ */
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+const InitialLayout = () => {
+  // This is the initial layout of the app when the app is opened
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack initialRouteName="index">
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack.Screen name="register" options={{ headerShown: false }} />
+      <Stack.Screen name= "(tabs)" options= {{headerShown: false}}/>
+      <Stack.Screen name= "(home)/DamDetailScreen" options= {{headerShown: false}} />
+      <Stack.Screen name= "(bill_transaction)/BillEnquiryScreen" options= {{headerShown: false}} />
+      <Stack.Screen name= "(bill_transaction)/BillPaymentScreen" options= {{headerShown: false}} />
+    </Stack>
   );
-}
+};
+
+const RootLayoutNav = () => {
+  return (
+    <ActionSheetProvider>
+      <>
+        <StatusBar style="light" backgroundColor={Colors.primary}></StatusBar>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <InitialLayout />
+        </GestureHandlerRootView>
+      </>
+    </ActionSheetProvider>
+  );
+};
+
+export default RootLayoutNav;
