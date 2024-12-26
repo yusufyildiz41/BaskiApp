@@ -10,9 +10,7 @@ export default function BillEnquiryScreen() {
       flex: 1,
       paddingTop: top + 10
     }}>
-      <TouchableWithoutFeedback onPress={() =>Keyboard.dismiss}>
-
-      </TouchableWithoutFeedback>
+      <Text>Bill Enquiry Screen</Text>
 
     </SafeAreaView>
   );

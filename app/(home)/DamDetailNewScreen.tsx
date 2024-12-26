@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from "expo-router";
+import { useGlobalSearchParams, useLocalSearchParams } from "expo-router";
 import {
   View,
   Text,
@@ -10,9 +10,6 @@ import { Colors } from "@/constants/Colors";
 import { poppinsFontBody, poppinsFontTitle } from "@/constants/Fonts";
 import { LineChart } from "react-native-chart-kit";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-import { useRouter } from "expo-router";
-import { opacity } from "react-native-reanimated/lib/typescript/Colors";
 import { useState } from "react";
 
 interface DamDataset {
@@ -157,18 +154,17 @@ const MONTHLY_DAM_DATA: Record<string, DamInfo> = {
   },
 };
 
-function DamDetailScreen() {
+export default function DamDetailNewScreen() {
   const { top } = useSafeAreaInsets();
-  const { damId } = useLocalSearchParams();
-  const yearlyDamData = YEARLY_DAM_DATA[damId as string];
-  const monthlyDamData = MONTHLY_DAM_DATA[damId as string];
+
+  const { damInfo } = useLocalSearchParams<{damInfo: string}>();
+  const yearlyDamData = YEARLY_DAM_DATA[damInfo];
+  const monthlyDamData = MONTHLY_DAM_DATA[damInfo];
 
   const screenWidth = Dimensions.get("window").width;
   if (!yearlyDamData) return null;
 
-  const [selectedPoint, setSelectedPoint] = useState<SelectedPoint | null>(
-    null
-  );
+
   const [currentNumber, setCurrentNumber] = useState("");
   return (
     <View style={[styles.container, { paddingTop: top + 20 }]}>
@@ -305,7 +301,7 @@ function DamDetailScreen() {
   );
 }
 
-export default DamDetailScreen;
+
 
 const styles = StyleSheet.create({
   container: {
