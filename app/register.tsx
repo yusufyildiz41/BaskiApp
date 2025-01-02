@@ -38,6 +38,7 @@ function Register() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [isAgreementOpened, setIsAgreementOpened] = useState(false);
@@ -119,8 +120,8 @@ Son Güncelleme Tarihi: [Tarih]`;
           ></PasswordInput>
 
           <PasswordInput
-            value={password}
-            onChangeText={setPassword}
+            value={passwordConfirm}
+            onChangeText={setPasswordConfirm}
             placeHolder={"Şifrenizi Giriniz (Tekrar)"}
           ></PasswordInput>
 

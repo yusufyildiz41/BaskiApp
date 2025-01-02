@@ -44,8 +44,6 @@ export function loadFonts(): boolean {
 
   return fontsLoaded;
 }
-
-
 export const poppinsFontTitle: string = "Poppins_600SemiBold";
 export const poppinsFontBody: string = "Poppins_500Medium";
 export const poppinsFontSmall: string = "Poppins_300Light";

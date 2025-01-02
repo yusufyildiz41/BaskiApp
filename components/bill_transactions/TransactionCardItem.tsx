@@ -5,9 +5,8 @@ import { poppinsFontTitle } from "@/constants/Fonts";
 
 export enum ItemType {
   BILL_ENQUIRY = "BillEnquiryScreen",
-  BILL_PAYMENT = "BillPaymentScreen",
-  BILL_PAYMENT_HISTORY = "BillPaymentHistoryScreen",
   BILL_MOVEMENT = "BillMovementScreen",
+  BILL_PAYMENT_HISTORY = "BillPaymentHistoryScreen",
   BILL_OBJECTION_FORM = "BillObjectionFormScreen",
 }
 
@@ -57,7 +56,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   cardItemText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: poppinsFontTitle,
     textAlign: "left",
 

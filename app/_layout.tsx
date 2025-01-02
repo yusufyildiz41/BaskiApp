@@ -3,6 +3,8 @@ import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { Colors } from "../constants/Colors";
+import { Provider } from "react-redux";
+import { store } from "../store";
 
 /**
  * ActionSheetProvider is a provider for the action sheet. It is used to provide the action sheet context to the app.
@@ -20,24 +22,39 @@ const InitialLayout = () => {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="login" options={{ headerShown: false }} />
       <Stack.Screen name="register" options={{ headerShown: false }} />
-      <Stack.Screen name= "(tabs)" options= {{headerShown: false}}/>
-      <Stack.Screen name= "(home)/DamDetailNewScreen" options= {{headerShown: false}} />
-      <Stack.Screen name= "(bill_transaction)/BillEnquiryScreen" options= {{headerShown: false}} />
-      <Stack.Screen name= "(bill_transaction)/BillPaymentScreen" options= {{headerShown: false}} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(home)/DamDetailNewScreen"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="(bill_transaction)/BillEnquiryScreen"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="(bill_transaction)/BillMovementScreen"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="(bill_transaction)/BillPaymentHistoryScreen"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="(bill_transaction)/BillObjectionFormScreen"
+        options={{ headerShown: false }}
+      />
     </Stack>
   );
 };
 
 const RootLayoutNav = () => {
   return (
-    <ActionSheetProvider>
-      <>
-        <StatusBar style="light" backgroundColor={Colors.primary}></StatusBar>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <InitialLayout />
-        </GestureHandlerRootView>
-      </>
-    </ActionSheetProvider>
+    <Provider store={store}>
+      <StatusBar style="light" backgroundColor={Colors.primary}></StatusBar>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <InitialLayout />
+      </GestureHandlerRootView>
+    </Provider>
   );
 };
 

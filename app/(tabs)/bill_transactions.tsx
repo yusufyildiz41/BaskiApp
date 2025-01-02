@@ -28,8 +28,14 @@ export default function BillTransactions() {
       case ItemType.BILL_ENQUIRY:
         router.push("/(bill_transaction)/BillEnquiryScreen");
         break;
-      case ItemType.BILL_PAYMENT:
-        router.push("/(bill_transaction)/BillPaymentScreen");
+      case ItemType.BILL_MOVEMENT:
+        router.push("/(bill_transaction)/BillMovementScreen");
+        break;
+      case ItemType.BILL_PAYMENT_HISTORY:
+        router.push("/(bill_transaction)/BillPaymentHistoryScreen");
+        break;
+      case ItemType.BILL_OBJECTION_FORM:
+        router.push("/(bill_transaction)/BillObjectionFormScreen");
         break;
     }
   };
@@ -37,16 +43,10 @@ export default function BillTransactions() {
   return (
     <SafeAreaView style={[styles.container, { paddingTop: top + 20 }]}>
       <TransactionCardItem
-        label="Fatura Sorgula"
-        icon="query-stats"
+        label="Fatura Sorgulama & Ödeme"
+        icon="payment"
         onPress={handleClickedItem}
         itemType={ItemType.BILL_ENQUIRY}
-      />
-      <TransactionCardItem
-        label="Fatura Ödeme"
-        icon="credit-card"
-        onPress={handleClickedItem}
-        itemType={ItemType.BILL_PAYMENT}
       />
 
       <TransactionCardItem
@@ -63,7 +63,7 @@ export default function BillTransactions() {
       />
 
       <TransactionCardItem
-        label="Fatura İtiraz Formu"
+        label="Fatura Talep Formu"
         icon="report"
         onPress={handleClickedItem}
         itemType={ItemType.BILL_OBJECTION_FORM}

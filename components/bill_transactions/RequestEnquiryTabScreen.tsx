@@ -13,34 +13,33 @@ import { Colors } from "@/constants/Colors";
 import { poppinsFontBody, poppinsFontTitle } from "@/constants/Fonts";
 import { Input, Button } from "@rneui/themed";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { router } from "expo-router";
-export default function BillEnquiryScreen() {
-  const { top } = useSafeAreaInsets();
 
+export default function RequestEnquiryTabScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={[styles.container, { paddingTop: top+20 }]}>
-        {/* Logo ve Başlık */}
-
-        <View style = {styles.header}>
-          <TouchableOpacity onPress={() => router.back()} style = {styles.backButton}>
-            <Icon name="arrow-back-ios" size={24} color={Colors.primary} />
-          </TouchableOpacity>
-          <Text style = {styles.title}>Fatura Sorgulama & Ödeme</Text>
-        </View>
-
-        {/* Arama Kartı */}
+      <SafeAreaView style={styles.container}>
         <View style={styles.searchCard}>
           <Text style={styles.infoText}>
-            Fatura sorgulaması yapmak veya ödemek için abone numaranızı veya TC kimlik
-            numaranızı giriniz.
+            Geçmiş taleplerinizi sorgulamak için lütfen TC kimlik numaranızı ve
+            talep sonrasında size verilen takip numarasını giriniz
           </Text>
 
           <Input
-            placeholder="Abone No veya TC Kimlik No giriniz"
+            placeholder="TC Kimlik No"
+            maxLength={11}
             leftIcon={
               <Icon name="person-search" size={20} color={Colors.primary} />
             }
+            keyboardType="number-pad"
+            containerStyle={styles.inputContainer}
+            inputContainerStyle={styles.inputInnerContainer}
+            inputStyle={styles.input}
+          />
+
+          <Input
+            maxLength={8}
+            placeholder="Takip Numarası"
+            leftIcon={<Icon name="numbers" size={20} color={Colors.primary} />}
             keyboardType="number-pad"
             containerStyle={styles.inputContainer}
             inputContainerStyle={styles.inputInnerContainer}
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: poppinsFontTitle,
     color: Colors.primary,
-    flex: 1
+    flex: 1,
   },
   searchCard: {
     backgroundColor: Colors.background,
@@ -92,7 +91,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     paddingHorizontal: 0,
-    
   },
   inputInnerContainer: {
     borderWidth: 1,
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
   input: {
     fontFamily: poppinsFontBody,
     fontSize: 11,
-    textAlign: "left"
+    textAlign: "left",
   },
   infoText: {
     fontFamily: poppinsFontBody,

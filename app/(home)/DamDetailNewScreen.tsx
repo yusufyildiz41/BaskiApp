@@ -11,6 +11,8 @@ import { poppinsFontBody, poppinsFontTitle } from "@/constants/Fonts";
 import { LineChart } from "react-native-chart-kit";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
+import { router } from "expo-router";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface DamDataset {
   data: number[];
@@ -166,9 +168,18 @@ export default function DamDetailNewScreen() {
 
 
   const [currentNumber, setCurrentNumber] = useState("");
+  
   return (
     <View style={[styles.container, { paddingTop: top + 20 }]}>
-      <Text style={styles.title}>{yearlyDamData.title}</Text>
+      <View style={styles.header}>
+        <TouchableOpacity 
+          onPress={() => router.back()}
+          style={styles.backButton}
+        >
+          <Icon name="arrow-back-ios" size={24} color={Colors.primary} />
+        </TouchableOpacity>
+        <Text style={styles.title}>{yearlyDamData.title}</Text>
+      </View>
 
       <LineChart
         data={yearlyDamData.data}
@@ -308,12 +319,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  backButton: {
+    marginRight: 10,
+  },
   title: {
     fontSize: 24,
-    marginHorizontal: 20,
     fontFamily: poppinsFontTitle,
     color: Colors.primary,
-    marginBottom: 20,
+    flex: 1,
   },
   chartContainer: {
     backgroundColor: Colors.background,

@@ -67,14 +67,12 @@ const styles = StyleSheet.create({
   },
   damsItemTitle: {
     fontSize: 14,
-    fontFamily: poppinsFontSmall,
-    color: Colors.primary,
-    fontWeight: "400",
+    fontFamily: poppinsFontBody,
+    color: Colors.primary    
   },
   damsItemValue: {
     fontSize: 12,
     fontFamily: poppinsFontSmall,
     color: Colors.title,
-    fontWeight: "200",
   },
 });

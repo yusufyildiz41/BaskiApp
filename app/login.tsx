@@ -14,12 +14,21 @@ import { EmailInput } from "@/components/login/EmailInput";
 import { PasswordInput } from "@/components/login/PasswordInput";
 import { LoginButton } from "@/components/login/LoginButton";
 import { router } from "expo-router";
-import { poppinsFontTitle, poppinsFontBody, poppinsFontSmall } from "@/constants/Fonts";
+import {
+  poppinsFontTitle,
+  poppinsFontBody,
+  poppinsFontSmall,
+} from "@/constants/Fonts";
+import {useDispatch} from "react-redux"
+import { setLoginState } from "../store/slices/loginSlice"
+
+
 function Login() {
   const { top } = useSafeAreaInsets();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch()
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -52,16 +61,19 @@ function Login() {
         ></PasswordInput>
 
         <LoginButton
-
           buttonText="Giriş Yap"
           onPress={() => {
-            router.replace("/(tabs)/home")
+            dispatch(setLoginState({email:email, password:password}))
+            router.replace("/(tabs)/home");
           }}
         ></LoginButton>
 
         <View style={styles.notAnAccountContainer}>
           <Text style={styles.notAnAccountText}>Hesabın yok mu? </Text>
-          <Pressable onPress= {() => router.push("/register")}>
+          <Pressable onPress={() => {
+            
+            router.push("/register")
+          }}>
             <Text style={styles.registerText}>Kayıt ol</Text>
           </Pressable>
         </View>
@@ -95,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginHorizontal: 20,
     textAlign: "center",
-    color: Colors.title
+    color: Colors.title,
   },
   inputContainer: {
     fontSize: 16,
